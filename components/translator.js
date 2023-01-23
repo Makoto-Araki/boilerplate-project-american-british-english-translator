@@ -12,17 +12,21 @@ class Translator {
 
   // Main method
   translate(text, locale) {
-    console.log(`A01`);
     this.text = text;
-    console.log(`A02`);
-    //if (localte === 'american-to-british') {
-      //for (key in americanOnly) {
-        console.log(americanOnly.bangs);
-      //}
-    console.log(`A03`);
-    //} else {
+    let arr1 = [
+      americanOnly,
+      americanToBritishSpelling,
+      americanToBritishTitles,
+      britishOnly ];
+    if (locale === 'american-to-british') {
+      for (let i = 0; i < arr1.length; i++) {
+        for (let key in arr1[i]) {
+          //console.log(`${key} : ${americanOnly[key]}`);
+        }
+      }
+    } else {
       //
-    //}
+    }
   }
   
 }
