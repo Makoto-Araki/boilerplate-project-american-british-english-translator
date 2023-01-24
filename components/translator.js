@@ -13,19 +13,18 @@ class Translator {
   // Main method
   translate(text, locale) {
     this.text = text;
-    let arr1 = [
+    let arr = [
       americanOnly,
       americanToBritishSpelling,
       americanToBritishTitles,
       britishOnly ];
     if (locale === 'american-to-british') {
-      for (let i = 0; i < arr1.length; i++) {
-        for (let key in arr1[i]) {
+      for (let i = 0; i < arr.length; i++) {
+        for (let key in arr[i]) {
           let reg = new RegExp(key, 'i');
           if (reg.test(this.text) === true) {
-            console.log(`BEF : ${this.text}`);
-            this.text = this.text.replace(reg, arr1[i][key]);
-            console.log(`AFT : ${this.text}`);
+            let str = '<span class="highlight">' + arr[i][key] + '</span>';
+            this.text = this.text.replace(reg, str);
           }
         }
       }

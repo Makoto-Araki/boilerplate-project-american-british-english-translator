@@ -9,7 +9,8 @@ module.exports = function (app) {
   app.route('/api/translate')
     .post((req, res) => {
       let result = translator.translate(req.body.text, req.body.locale);
-      console.log(result);
+      res.json({ translation: result });
+      //console.log(result);
       // { text: '', locale: 'american-to-british' }
       // { text: '', locale: 'british-to-american' }
     });
