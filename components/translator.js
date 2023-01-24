@@ -24,16 +24,25 @@ class Translator {
       let tmp3 = [];
       for (let i = 0; i < arr.length; i++) {
         for (let key in arr[i]) {
-          let reg = new RegExp(key, 'i');
-          if (reg.test(this.text) === true) {
+          let reg1 = new RegExp(key, 'i');
+          if (reg1.test(this.text) === true) {
             tmp1.push(key.length);
             tmp2.push(key);
             tmp3.push(arr[i][key]);
-            //let str = '<span class="highlight">' + arr[i][key] + '</span>';
-            //this.text = this.text.replace(reg, str);
           }
         }
       }
+      let wrk1 = 0;
+      let wrk2 = tmp1[wrk1];
+      for (let i = 1; i < tmp1.length; i++) {
+        if (wrk2 <= tmp1[i]) {
+          wrk1 = i;
+          wrk2 = tmp1[wrk1];
+        }
+      }
+      let reg2 = new RegExp(tmp2[wrk1], 'i');
+      let str1 = '<span class="highlight">' + tmp3[wrk1] + '</span>';
+      this.text = this.text.replace(reg2, str1);
     } else {
       //
     }
