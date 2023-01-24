@@ -19,12 +19,18 @@ class Translator {
       americanToBritishTitles,
       britishOnly ];
     if (locale === 'american-to-british') {
+      let tmp1 = [];
+      let tmp2 = [];
+      let tmp3 = [];
       for (let i = 0; i < arr.length; i++) {
         for (let key in arr[i]) {
           let reg = new RegExp(key, 'i');
           if (reg.test(this.text) === true) {
-            let str = '<span class="highlight">' + arr[i][key] + '</span>';
-            this.text = this.text.replace(reg, str);
+            tmp1.push(key.length);
+            tmp2.push(key);
+            tmp3.push(arr[i][key]);
+            //let str = '<span class="highlight">' + arr[i][key] + '</span>';
+            //this.text = this.text.replace(reg, str);
           }
         }
       }
