@@ -13,16 +13,14 @@ class Translator {
   // Main method
   translate(text, locale) {
     this.text = text;
-    let arr = [
-      americanOnly,
-      americanToBritishSpelling,
-      americanToBritishTitles,
-      britishOnly ];
+    let arr = [ americanOnly, americanToBritishSpelling, americanToBritishTitles, britishOnly ];
+    let reg1 = '';
+    let exp1 = '';
     
     if (locale === 'american-to-british') {
       // Step1
-      let reg1 = /([0-9]{2}):([0-9]{2})/;
-      let exp1 = '<span class="highlight">$1.$2</span>';
+      reg1 = /([0-9]{2}):([0-9]{2})/;
+      exp1 = '<span class="highlight">$1.$2</span>';
       if (reg1.test(this.text) === true) {
         this.text = this.text.replace(reg1, exp1);
       }
@@ -84,7 +82,12 @@ class Translator {
         this.text = this.text.replace(reg2, exp2);
       }
     } else {
-      //
+      // Step1
+      reg1 = /([0-9]{2}).([0-9]{2})/;
+      exp1 = '<span class="highlight">$1:$2</span>';
+      if (reg1.test(this.text) === true) {
+        this.text = this.text.replace(reg1, exp1);
+      }
     }
     return this.text;
   }
