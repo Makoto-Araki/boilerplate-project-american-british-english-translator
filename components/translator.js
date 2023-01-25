@@ -50,37 +50,39 @@ class Translator {
           wrk2 = tmp1[wrk1];
         }
       }
-      switch(tmp2[wrk1]) {
-        case 'mr.':
-          reg2 = /(mr)(.)/i;
-          exp2 = '<span class="highlight">$1</span>';
-          break;
-        case 'mrs.':
-          reg2 = /(mrs)(.)/i;
-          exp2 = '<span class="highlight">$1</span>';
-          break;
-        case 'ms.':
-          reg2 = /(ms)(.)/i;
-          exp2 = '<span class="highlight">$1</span>';
-          break;
-        case 'mx.':
-          reg2 = /(mx)(.)/i;
-          exp2 = '<span class="highlight">$1</span>';
-          break;
-        case 'dr.':
-          reg2 = /(dr)(.)/i;
-          exp2 = '<span class="highlight">$1</span>';
-          break;
-        case 'prof.':
-          reg2 = /(prof)(.)/i;
-          exp2 = '<span class="highlight">$1</span>';
-          break;
-        default:
-          reg2 = new RegExp(tmp2[wrk1], 'i');
-          exp2 = '<span class="highlight">' + tmp3[wrk1] + '</span>';
-          break;
+      if (tmp2[wrk1] !== undefined) {
+        switch(tmp2[wrk1]) {
+          case 'mr.':
+            reg2 = /(mr)(.)/i;
+            exp2 = '<span class="highlight">$1</span>';
+            break;
+          case 'mrs.':
+            reg2 = /(mrs)(.)/i;
+            exp2 = '<span class="highlight">$1</span>';
+            break;
+          case 'ms.':
+            reg2 = /(ms)(.)/i;
+            exp2 = '<span class="highlight">$1</span>';
+            break;
+          case 'mx.':
+            reg2 = /(mx)(.)/i;
+            exp2 = '<span class="highlight">$1</span>';
+            break;
+          case 'dr.':
+            reg2 = /(dr)(.)/i;
+            exp2 = '<span class="highlight">$1</span>';
+            break;
+          case 'prof.':
+            reg2 = /(prof)(.)/i;
+            exp2 = '<span class="highlight">$1</span>';
+            break;
+          default:
+            reg2 = new RegExp(tmp2[wrk1], 'i');
+            exp2 = '<span class="highlight">' + tmp3[wrk1] + '</span>';
+            break;
+        }
+        this.text = this.text.replace(reg2, exp2);
       }
-      this.text = this.text.replace(reg2, exp2);
     } else {
       //
     }
