@@ -26,7 +26,7 @@ class Translator {
     
     if (locale === 'american-to-british') {
       // Step1
-      reg1 = /([0-9]{2}):([0-9]{2})/;
+      reg1 = /([0-9]{1,2}):([0-9]{2})/;
       exp1 = '<span class="highlight">$1.$2</span>';
       if (reg1.test(this.text) === true) {
         this.text = this.text.replace(reg1, exp1);
@@ -85,7 +85,7 @@ class Translator {
       }
     } else {
       // Step1
-      reg1 = /([0-9]{2}).([0-9]{2})/;
+      reg1 = /([0-9]{1,2}).([0-9]{2})/;
       exp1 = '<span class="highlight">$1:$2</span>';
       if (reg1.test(this.text) === true) {
         this.text = this.text.replace(reg1, exp1);
