@@ -5,9 +5,10 @@ const Translator = require('../components/translator.js');
 const translator = new Translator();
 
 suite('Unit Tests', () => {
-  const opt1 = 'american-to-british';
-  const opt2 = 'british-to-american';
-  
+  const option1 = 'american-to-british';
+  const option2 = 'british-to-american';
+
+  // American => British
   const in01 = 'Mangoes are my favorite fruit.';
   const in02 = 'I ate yogurt for breakfast.';
   const in03 = "We had a party at my friend\'s condo.";
@@ -18,7 +19,6 @@ suite('Unit Tests', () => {
   const in08 = 'No Mr. Bond, I expect you to die.';
   const in09 = 'Dr. Grosh will see you now.';
   const in10 = 'Lunch is at 12:15 today.';
-  
   const out01 = 'Mangoes are my <span class="highlight">favourite</span> fruit.';
   const out02 = 'I ate <span class="highlight">yoghurt</span> for breakfast.';
   const out03 = 'We had a party at my friend\'s <span class="highlight">flat</span>.';
@@ -29,35 +29,57 @@ suite('Unit Tests', () => {
   const out08 = 'No <span class="highlight">Mr</span> Bond, I expect you to die.';
   const out09 = '<span class="highlight">Dr</span> Grosh will see you now.';
   const out10 = 'Lunch is at <span class="highlight">12.15</span> today.';
+
+  // British => American
+  const in11 = '';
+  const in12 = '';
+  const in13 = '';
+  const in14 = '';
+  const in15 = '';
+  const in16 = '';
+  const in17 = '';
+  const in18 = '';
+  const in19 = '';
+  const in20 = '';
+  const out11 = '';
+  const out12 = '';
+  const out13 = '';
+  const out14 = '';
+  const out15 = '';
+  const out16 = '';
+  const out17 = '';
+  const out18 = '';
+  const out19 = '';
+  const out20 = '';
   
   test('Translate to British English - 01', () => {
-    assert.equal(translator.translate(in01, opt1), out01);
+    assert.equal(translator.translate(in01, option1), out01);
   });
   test('Translate to British English - 02', () => {
-    assert.equal(translator.translate(in02, opt1), out02);
+    assert.equal(translator.translate(in02, option1), out02);
   });
   test('Translate to British English - 03', () => {
-    assert.equal(translator.translate(in03, opt1), out03);
+    assert.equal(translator.translate(in03, option1), out03);
   });
   test('Translate to British English - 04', () => {
-    assert.equal(translator.translate(in04, opt1), out04);
+    assert.equal(translator.translate(in04, option1), out04);
   });
   test('Translate to British English - 05', () => {
-    assert.equal(translator.translate(in05, opt1), out05);
+    assert.equal(translator.translate(in05, option1), out05);
   });
   test('Translate to British English - 06', () => {
-    assert.equal(translator.translate(in06, opt1), out06);
+    assert.equal(translator.translate(in06, option1), out06);
   });
   test('Translate to British English - 07', () => {
-    assert.equal(translator.translate(in07, opt1), out07);
+    assert.equal(translator.translate(in07, option1), out07);
   });
   test('Translate to British English - 08', () => {
-    assert.equal(translator.translate(in08, opt1), out08);
+    assert.equal(translator.translate(in08, option1), out08);
   });
   test('Translate to British English - 09', () => {
-    assert.equal(translator.translate(in09, opt1), out09);
+    assert.equal(translator.translate(in09, option1), out09);
   });
   test('Translate to British English - 10', () => {
-    assert.equal(translator.translate(in10, opt1), out10);
+    assert.equal(translator.translate(in10, option1), out10);
   });
 });
