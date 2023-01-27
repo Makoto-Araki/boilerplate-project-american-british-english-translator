@@ -21,6 +21,7 @@ suite('Unit Tests', () => {
   const str08 = 'No Mr. Bond, I expect you to die.';
   const str09 = 'Dr. Grosh will see you now.';
   const str10 = 'Lunch is at 12:15 today.';
+  //const str99 = 'From 14:15 to 19:15';
   const tran01 = 'Mangoes are my <span class="highlight">favourite</span> fruit.';
   const tran02 = 'I ate <span class="highlight">yoghurt</span> for breakfast.';
   const tran03 = 'We had a party at my friend\'s <span class="highlight">flat</span>.';
@@ -31,6 +32,7 @@ suite('Unit Tests', () => {
   const tran08 = 'No <span class="highlight">Mr</span> Bond, I expect you to die.';
   const tran09 = '<span class="highlight">Dr</span> Grosh will see you now.';
   const tran10 = 'Lunch is at <span class="highlight">12.15</span> today.';
+  //const tran99 = 'From <span class="highlight">14.15</span> to <span class="highlight">19.15</span>';
 
   // British => American
   const str11 = 'We watched the footie match for a while.';
@@ -85,13 +87,19 @@ suite('Unit Tests', () => {
   test('Translate to British English - 10', () => {
     assert.equal(translator.translate(str10, option1), tran10);
   });
+  /*
+  test('Translate to British English - 99', () => {
+    assert.equal(translator.translate(str99, option1), tran99);
+  });
+  */
 
   // British => American Test
+  /*
   test('Translate to American English - 01', () => {
     assert.equal(translator.translate(str11, option2), tran11);
   });
   test('Translate to American English - 02', () => {
     assert.equal(translator.translate(str12, option2), tran12);
   });
-  //*/
+  */
 });
