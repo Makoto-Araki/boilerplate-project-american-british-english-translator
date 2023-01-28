@@ -9,17 +9,21 @@ class Translator {
   constructor() {
     // Property
     this.text = '';
-    this.candidate1 = {};
-    this.candidate2 = {};
+    this.dict1 = {};
+    this.dict2 = {};
     // American to British
     for (let key in americanOnly) {
-      this.candidate1[key] = americanOnly[key];
+      this.dict1[key] = americanOnly[key];
     }
     for (let key in americanToBritishSpelling) {
-      this.candidate1[key] = americanToBritishSpelling[key];
+      this.dict1[key] = americanToBritishSpelling[key];
+    }
+    // British to American
+    for (let key in americanToBritishSpelling) {
+      this.dict2[americanToBritishSpelling[key]] = key;
     }
     for (let key in britishOnly) {
-      this.candidate1[britishOnly[key]] = key;
+      this.dict2[key] = britishOnly[key];
     }
   }
 
@@ -83,12 +87,12 @@ class Translator {
       // Step3
       //console.log(`STEP3`);
       //console.log(`TEXT : ${this.text}`);
-      for (let key in this.candidate1) {
+      for (let key in this.dict1) {
         reg3 = new RegExp(key, 'i');
         if (reg3.test(this.text) === true) {
           tmp1.push(key.length);
           tmp2.push(key);
-          tmp3.push(this.candidate1[key]);
+          tmp3.push(this.dict1[key]);
         }
       }
       // Step4
@@ -113,7 +117,6 @@ class Translator {
       // Step6
       //console.log(`Step6`);
       //console.log(`TEXT : ${this.text}`);
-
     } else {
       //
     }
