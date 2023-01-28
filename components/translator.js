@@ -39,7 +39,6 @@ class Translator {
     let exp2 = '';
     let reg3 = '';
     let exp3 = '';
-    let hits = 0;
 
     if (locale === 'american-to-british') {
       // Step1
@@ -82,18 +81,43 @@ class Translator {
         }
       }
       // Step3
+      let hits = 0;
       for (let key in this.dict1) {
         reg3 = new RegExp('((\\s|\^))' + key + '((\\s|\.|\$))', 'ig');
-        if (reg3.test(this.text) === true) hits++;
-        exp3 = '$1<span class="highlight">' + this.dict1[key] + '</span>$3';
+        if (reg3.test(this.text) === true) {
+          hits++;
+          tmp1.push(key.length);
+          tmp2.push(key);
+          tmp3.push(this.dict1[key]);
+        }
+      }
+      if (hits === 1) {
+        reg3 = new RegExp('((\\s|\^))' + tmp2[0] + '((\\s|\.|\$))', 'ig');
+        exp3 = '$1<span class="highlight">' + this.dict1[tmp2[0]] + '</span>$3';
         this.text = this.text.replace(reg3, exp3);
+      }
+      if (hits > 1) {
+        let wrk1 = 0;
+        let wrk2 = tmp1[wrk1];
+        for (let i = 0; i < tmp1.length; i++) {
+          if (wrk2 <= tmp1[i]) {
+            wrk1 = i;
+            wrk2 = tmp1[wrk1];
+          }
+        }
+        reg3 = new RegExp('((\\s|\^))' + tmp2[wrk1] + '((\\s|\.|\$))', 'ig');
+        exp3 = '$1<span class="highlight">' + this.dict1[tmp2[wrk1]] + '</span>$3';
+        this.text = this.text.replace(reg3, exp3);
+      }
+        //exp3 = '$1<span class="highlight">' + this.dict1[key] + '</span>$3';
+        //this.text = this.text.replace(reg3, exp3);
       //  reg3 = new RegExp(key, 'i');
       //  if (reg3.test(this.text) === true) {
       //    tmp1.push(key.length);
       //    tmp2.push(key);
       //    tmp3.push(this.dict1[key]);
       //  }
-      }
+      //}
       // Step4
       //console.log(`STEP4`);
       //console.log(`TEXT : ${this.text}`);
