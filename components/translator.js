@@ -8,13 +8,20 @@ class Translator {
   // Constructor
   constructor() {
     this.text = '';
+    this.candidate1 = {};
+    this.candidate2 = {};
+    // american-to-british
+    for (let key in americanOnly)
+      this.candidate1[key] = americanOnly[key];
+    for (let key in americanToBritishSpelling)
+      this.candidate1[key] = americanToBritishSpelling[key];
+    for (let key in britishOnly)
+      this.candidate1[britishOnly[key]] = key;
   }
 
   // Main method
   translate(text, locale) {
     this.text = text;
-    let database = [ americanOnly, americanToBritishSpelling, britishOnly ];
-    let candidateList = {};
     let reg1 = '';
     let exp1 = '';
     let tmp1 = [];
@@ -33,7 +40,9 @@ class Translator {
       reg1 = /([0-9]{1,2}):([0-9]{2})/;
       exp1 = '<span class="highlight">$1.$2</span>';
       while (reg1.test(this.text) === true) {
+        console.log(`BEF : ${this.text}`);
         this.text = this.text.replace(reg1, exp1);
+        console.log(`AFT : ${this.text}`);
       }
       // Step2
       console.log(`Step2`);
@@ -65,35 +74,23 @@ class Translator {
             break;
         }
         while (reg2.test(this.text) === true) {
+          console.log(`BEF : ${this.text}`);
           this.text = this.text.replace(reg2, exp2);
+          console.log(`AFT : ${this.text}`);
         }
       }
       // Step3
       console.log(`Step3`);
-      //let candidateList = {};
-      for (let i = 0; i < database.length; i++) {
-        if (database[i] !== britishOnly) {
-          for (key in database[i]) {
-            candidateList[key] = database[i][key];
-          }
-        } else {
-          for (key in database[i]) {
-            candidateList[database[i][key]] = key;
-          }
-        }
-      }
-      // Step4
-      console.log(`Step4`);
-      for (let key in candidateList) {
+      for (let key in this.candidate1) {
         reg3 = new RegExp(key, 'i');
         if (reg3.test(this.text) === true) {
           tmp1.push(key.length);
           tmp2.push(key);
-          tmp3.push(candidateList[key]);
+          tmp3.push(candidate1[key]);
         }
       }
-      // Step5
-      console.log(`Step5`);
+      // Step4
+      console.log(`Step4`);
       maxIdx = 0;
       idxLen = tmp1[maxIdx];
       for (let i = 0; i < tmp1.length; i++) {
@@ -102,12 +99,14 @@ class Translator {
           idxLen = tmp1[maxIdx];
         }
       }
-      // Step6
-      console.log(`Step6`);
+      // Step5
+      console.log(`Step5`);
       reg3 = new RegExp(tmp2[maxIdx], 'i');
       exp3 = '<span class="highlight">' + tmp3[maxIdx] + '</span>';
       //while (reg3.test(this.text) === true) {
+        console.log(`BEF : ${this.text}`);
         this.text = this.text.replace(reg3, exp3);
+        console.log(`AFT : ${this.text}`);
       //}
 
       /*
