@@ -6,11 +6,11 @@ const translator = new Translator();
 
 suite('Unit Tests', () => {
   
-  // locale
+  // Locale
   const opt1 = 'american-to-british';
   const opt2 = 'british-to-american';
   
-  // American to British
+  // American to British - For Unit Test
   const bef01 = 'Mangoes are my favorite fruit.';
   const bef02 = 'I ate yogurt for breakfast.';
   const bef03 = "We had a party at my friend\'s condo.";
@@ -32,7 +32,7 @@ suite('Unit Tests', () => {
   const aft09 = '<span class="highlight">Dr</span> Grosh will see you now.';
   const aft10 = 'Lunch is at <span class="highlight">12.15</span> today.';
   
-  // Additional test
+  // American to British - For Additional Test
   const add01 = 'I write unit name kilogram and kilometer';
   const add02 = 'From 14:15 to 17:15';
   const add03 = 'kilogram and kilometer';
@@ -40,7 +40,7 @@ suite('Unit Tests', () => {
   const res02 = 'From <span class="highlight">14.15</span> to <span class="highlight">17.15</span>';
   const res03 = '<span class="highlight">kilogramme</span> and <span class="highlight">kilometre</span>';
   
-  // British to American
+  // British to American - For Unit Test
   const bef11 = 'We watched the footie match for a while.';
   const bef12 = 'Paracetamol takes up to an hour to work.';
   const bef13 = 'First, caramelise the onions.';
@@ -62,7 +62,7 @@ suite('Unit Tests', () => {
   const aft19 = '<span class="highlight">Prof.</span> Joyner of King\'s College, London.';
   const aft20 = 'Tea time is usually around 4 or <span class="highlight">4:30</span>.';
   
-  // American to British Test
+  // American to British - Unit Test
   test('Translate to British English - 01', () => {
     assert.equal(translator.translate(bef01, opt1), aft01);
   });
@@ -94,7 +94,7 @@ suite('Unit Tests', () => {
     assert.equal(translator.translate(bef10, opt1), aft10);
   });
   
-  // Additional Test
+  // American to British - Additional Test
   test('Additional Test - 01', () => {
     assert.equal(translator.translate(add01, opt1), res01);
   });
@@ -105,35 +105,35 @@ suite('Unit Tests', () => {
     assert.equal(translator.translate(add03, opt1), res03);
   });
   
-  // British to American Test
-  //test('Translate to American English - 01', () => {
-  //  assert.equal(translator.translate(bef11, opt2), aft11);
-  //});
-  //test('Translate to American English - 02', () => {
-  //  assert.equal(translator.translate(bef12, opt2), aft12);
-  //});
-  //test('Translate to American English - 03', () => {
-  //  assert.equal(translator.translate(bef13, opt2), aft13);
-  //});
-  //test('Translate to American English - 04', () => {
-  //  assert.equal(translator.translate(bef14, opt2), aft14);
-  //});
-  //test('Translate to American English - 05', () => {
-  //  assert.equal(translator.translate(bef15, opt2), aft15);
-  //});
-  //test('Translate to American English - 06', () => {
-  //  assert.equal(translator.translate(bef16, opt2), aft16);
-  //});
-  //test('Translate to American English - 07', () => {
-  //  assert.equal(translator.translate(bef17, opt2), aft17);
-  //});
-  //test('Translate to American English - 08', () => {
-  //  assert.equal(translator.translate(bef18, opt2), aft18);
-  //});
-  //test('Translate to American English - 09', () => {
-  //  assert.equal(translator.translate(bef19, opt2), aft19);
-  //});
-  //test('Translate to American English - 10', () => {
-  //  assert.equal(translator.translate(bef20, opt2), aft20);
-  //});
+  // British to American - Unit Test
+  test('Translate to American English - 01', () => {
+    assert.equal(translator.translate(bef11, opt2), aft11);
+  });
+  test('Translate to American English - 02', () => {
+    assert.equal(translator.translate(bef12, opt2), aft12);
+  });
+  test('Translate to American English - 03', () => {
+    assert.equal(translator.translate(bef13, opt2), aft13);
+  });
+  test('Translate to American English - 04', () => {
+    assert.equal(translator.translate(bef14, opt2), aft14);
+  });
+  test('Translate to American English - 05', () => {
+    assert.equal(translator.translate(bef15, opt2), aft15);
+  });
+  test('Translate to American English - 06', () => {
+    assert.equal(translator.translate(bef16, opt2), aft16);
+  });
+  test('Translate to American English - 07', () => {
+    assert.equal(translator.translate(bef17, opt2), aft17);
+  });
+  test('Translate to American English - 08', () => {
+    assert.equal(translator.translate(bef18, opt2), aft18);
+  });
+  test('Translate to American English - 09', () => {
+    assert.equal(translator.translate(bef19, opt2), aft19);
+  });
+  test('Translate to American English - 10', () => {
+    assert.equal(translator.translate(bef20, opt2), aft20);
+  });
 });
