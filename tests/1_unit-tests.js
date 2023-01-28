@@ -33,10 +33,12 @@ suite('Unit Tests', () => {
   const tran10 = 'Lunch is at <span class="highlight">12.15</span> today.';
 
   // Additional test
-  const add01 = 'kilogram and kilometer';
+  const add01 = 'I write unit name kilogram and kilometer';
   const add02 = 'From 14:15 to 17:15';
-  const res01 = '<span class="highlight">kilogramme</span> and <span class="highlight">kilometre</span>';
+  const add03 = 'kilogram and kilometer';
+  const res01 = 'I write unit name <span class="highlight">kilogramme</span> and <span class="highlight">kilometre</span>';
   const res02 = 'From <span class="highlight">14.15</span> to <span class="highlight">17.15</span>';
+  const res03 = '<span class="highlight">kilogramme</span> and <span class="highlight">kilometre</span>';
   
   // British to American
   const str11 = 'We watched the footie match for a while.';
@@ -99,7 +101,10 @@ suite('Unit Tests', () => {
   test('Additional Test - 02', () => {
     assert.equal(translator.translate(add02, opt1), res02);
   });
-
+  test('Additional Test - 03', () => {
+    assert.equal(translator.translate(add03, opt1), res03);
+  });
+  
   // British to American Test
   //test('Translate to American English - 01', () => {
   //  assert.equal(translator.translate(str11, opt2), tran11);

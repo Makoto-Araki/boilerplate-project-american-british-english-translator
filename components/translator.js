@@ -39,17 +39,14 @@ class Translator {
     let exp2 = '';
     let reg3 = '';
     let exp3 = '';
+    let hits = 0;
 
     if (locale === 'american-to-british') {
       // Step1
-      //console.log(`STEP1`);
-      //console.log(`TEXT : ${this.text}`);
       reg1 = /([0-9]{1,2}):([0-9]{2})/g;
       exp1 = '<span class="highlight">$1.$2</span>';
       this.text = this.text.replace(reg1, exp1);
       // Step2
-      //console.log(`STEP2`);
-      //console.log(`TEXT : ${this.text}`);
       for (let key in americanToBritishTitles) {
         switch (key) {
           case 'mr.':
@@ -85,35 +82,37 @@ class Translator {
         }
       }
       // Step3
-      //console.log(`STEP3`);
-      //console.log(`TEXT : ${this.text}`);
       for (let key in this.dict1) {
-        reg3 = new RegExp(key, 'i');
-        if (reg3.test(this.text) === true) {
-          tmp1.push(key.length);
-          tmp2.push(key);
-          tmp3.push(this.dict1[key]);
-        }
+        reg3 = new RegExp('((\\s|\^))' + key + '((\\s|\.|\$))', 'ig');
+        if (reg3.test(this.text) === true) hits++;
+        exp3 = '$1<span class="highlight">' + this.dict1[key] + '</span>$3';
+        this.text = this.text.replace(reg3, exp3);
+      //  reg3 = new RegExp(key, 'i');
+      //  if (reg3.test(this.text) === true) {
+      //    tmp1.push(key.length);
+      //    tmp2.push(key);
+      //    tmp3.push(this.dict1[key]);
+      //  }
       }
       // Step4
       //console.log(`STEP4`);
       //console.log(`TEXT : ${this.text}`);
-      let wrk1 = 0;
-      let wrk2 = tmp1[wrk1];
-      for (let i = 0; i < tmp1.length; i++) {
-        if (wrk2 <= tmp1[i]) {
-          wrk1 = i;
-          wrk2 = tmp1[wrk1];
-        }
-      }
+      //let wrk1 = 0;
+      //let wrk2 = tmp1[wrk1];
+      //for (let i = 0; i < tmp1.length; i++) {
+      //  if (wrk2 <= tmp1[i]) {
+      //    wrk1 = i;
+      //    wrk2 = tmp1[wrk1];
+      //  }
+      //}
       // Step5
       //console.log(`STEP5`);
       //console.log(`TEXT : ${this.text}`);
-      if (tmp2[wrk1] !== undefined) {
-        reg3 = new RegExp(tmp2[wrk1], 'ig');
-        exp3 = '<span class="highlight">' + tmp3[wrk1] + '</span>';
-        this.text = this.text.replace(reg3, exp3);
-      }
+      //if (tmp2[wrk1] !== undefined) {
+      //  reg3 = new RegExp(tmp2[wrk1], 'ig');
+      //  exp3 = '<span class="highlight">' + tmp3[wrk1] + '</span>';
+      //  this.text = this.text.replace(reg3, exp3);
+      //}
       // Step6
       //console.log(`Step6`);
       //console.log(`TEXT : ${this.text}`);
