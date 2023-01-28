@@ -7,32 +7,48 @@ class Translator {
 
   // Constructor
   constructor() {
-    // Property
     this.text = '';
-    this.dict1 = {};
-    this.dict2 = {};
+    this.dict1 = [];
+    this.dict2 = [];
+    
     // American to British
     for (let key in americanOnly) {
-      this.dict1[key] = americanOnly[key];
+      let tmp1 = {};
+      tmp1.len = key.length;
+      tmp1.key = key;
+      tmp1.val = americanOnly[key];
+      this.dict1.push(tmp1);
     }
     for (let key in americanToBritishSpelling) {
-      this.dict1[key] = americanToBritishSpelling[key];
+      let tmp2 = {};
+      tmp2.len = key.length;
+      tmp2.key = key;
+      tmp2.val = americanToBritishSpelling[key];
+      this.dict1.push(tmp2);
     }
     // British to American
     for (let key in americanToBritishSpelling) {
-      this.dict2[americanToBritishSpelling[key]] = key;
+      let tmp3 = {};
+      tmp3.len = americanToBritishSpelling[key].length;
+      tmp3.key = americanToBritishSpelling[key];
+      tmp3.val = key;
+      this.dict2.push(tmp3);
     }
     for (let key in britishOnly) {
-      this.dict2[key] = britishOnly[key];
+      let tmp4 = {};
+      tmp4.len = key.length;
+      tmp4.key = key;
+      tmp4.val = britishOnly[key];
+      this.dict2.push(tmp4);
     }
+    // Object arrays sort
+    this.dict1.sort((a, b) => b.len - a.len);
+    this.dict2.sort((a, b) => b.len - a.len);
   }
 
   // Main method
   translate(text, locale) {
     this.text = text;
-    let tmp1 = [];
-    let tmp2 = [];
-    let tmp3 = [];
     let reg1 = '';
     let exp1 = '';
     let reg2 = '';
@@ -81,65 +97,11 @@ class Translator {
         }
       }
       // Step3
-      let hits = 0;
-      for (let key in this.dict1) {
-        reg3 = new RegExp('((\\s|\^))' + key + '((\\s|\.|\$))', 'ig');
-        if (reg3.test(this.text) === true) {
-          hits++;
-          tmp1.push(key.length);
-          tmp2.push(key);
-          tmp3.push(this.dict1[key]);
-        }
-      }
-      if (hits === 1) {
-        reg3 = new RegExp('((\\s|\^))' + tmp2[0] + '((\\s|\.|\$))', 'ig');
-        exp3 = '$1<span class="highlight">' + this.dict1[tmp2[0]] + '</span>$3';
+      for (let i = 0; i < this.dict1.length; i++) {
+        reg3 = new RegExp('((\\s|\^))' + this.dict1[i].key + '((\\s|\.|\$))', 'ig');
+        exp3 = '$1<span class="highlight">' + this.dict1[i].val + '</span>$3';
         this.text = this.text.replace(reg3, exp3);
       }
-      if (hits > 1) {
-        let wrk1 = 0;
-        let wrk2 = tmp1[wrk1];
-        for (let i = 0; i < tmp1.length; i++) {
-          if (wrk2 <= tmp1[i]) {
-            wrk1 = i;
-            wrk2 = tmp1[wrk1];
-          }
-        }
-        reg3 = new RegExp('((\\s|\^))' + tmp2[wrk1] + '((\\s|\.|\$))', 'ig');
-        exp3 = '$1<span class="highlight">' + this.dict1[tmp2[wrk1]] + '</span>$3';
-        this.text = this.text.replace(reg3, exp3);
-      }
-        //exp3 = '$1<span class="highlight">' + this.dict1[key] + '</span>$3';
-        //this.text = this.text.replace(reg3, exp3);
-      //  reg3 = new RegExp(key, 'i');
-      //  if (reg3.test(this.text) === true) {
-      //    tmp1.push(key.length);
-      //    tmp2.push(key);
-      //    tmp3.push(this.dict1[key]);
-      //  }
-      //}
-      // Step4
-      //console.log(`STEP4`);
-      //console.log(`TEXT : ${this.text}`);
-      //let wrk1 = 0;
-      //let wrk2 = tmp1[wrk1];
-      //for (let i = 0; i < tmp1.length; i++) {
-      //  if (wrk2 <= tmp1[i]) {
-      //    wrk1 = i;
-      //    wrk2 = tmp1[wrk1];
-      //  }
-      //}
-      // Step5
-      //console.log(`STEP5`);
-      //console.log(`TEXT : ${this.text}`);
-      //if (tmp2[wrk1] !== undefined) {
-      //  reg3 = new RegExp(tmp2[wrk1], 'ig');
-      //  exp3 = '<span class="highlight">' + tmp3[wrk1] + '</span>';
-      //  this.text = this.text.replace(reg3, exp3);
-      //}
-      // Step6
-      //console.log(`Step6`);
-      //console.log(`TEXT : ${this.text}`);
     } else {
       //
     }
