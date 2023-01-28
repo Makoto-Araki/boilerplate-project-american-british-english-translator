@@ -4,168 +4,116 @@ const americanToBritishTitles = require("./american-to-british-titles.js")
 const britishOnly = require('./british-only.js')
 
 class Translator {
-  
+
   // Constructor
   constructor() {
+    // Property
     this.text = '';
     this.candidate1 = {};
     this.candidate2 = {};
-    // american-to-british
-    for (let key in americanOnly)
+    // American to British
+    for (let key in americanOnly) {
       this.candidate1[key] = americanOnly[key];
-    for (let key in americanToBritishSpelling)
+    }
+    for (let key in americanToBritishSpelling) {
       this.candidate1[key] = americanToBritishSpelling[key];
-    for (let key in britishOnly)
+    }
+    for (let key in britishOnly) {
       this.candidate1[britishOnly[key]] = key;
+    }
   }
 
   // Main method
   translate(text, locale) {
     this.text = text;
-    let reg1 = '';
-    let exp1 = '';
     let tmp1 = [];
     let tmp2 = [];
     let tmp3 = [];
+    let reg1 = '';
+    let exp1 = '';
     let reg2 = '';
     let exp2 = '';
     let reg3 = '';
     let exp3 = '';
-    let maxIdx = 0;
-    let idxLen = 0;
-    
+
     if (locale === 'american-to-british') {
       // Step1
-      console.log(`Step1`);
-      reg1 = /([0-9]{1,2}):([0-9]{2})/;
+      console.log(`STEP1`);
+      console.log(`TEXT : ${this.text}`);
+      reg1 = /([0-9]{1,2}):([0-9]{2})/g;
       exp1 = '<span class="highlight">$1.$2</span>';
-      while (reg1.test(this.text) === true) {
-        console.log(`BEF : ${this.text}`);
-        this.text = this.text.replace(reg1, exp1);
-        console.log(`AFT : ${this.text}`);
-      }
+      this.text = this.text.replace(reg1, exp1);
       // Step2
-      console.log(`Step2`);
+      console.log(`STEP2`);
+      console.log(`TEXT : ${this.text}`);
       for (let key in americanToBritishTitles) {
         switch (key) {
           case 'mr.':
-            reg2 = /(mr)(.)/i;
+            reg2 = /(mr)(\.)/ig;
             exp2 = '<span class="highlight">$1</span>';
+            this.text = this.text.replace(reg2, exp2);
             break;
           case 'mrs.':
-            reg2 = /(mrs)(.)/i;
+            reg2 = /(mrs)(\.)/ig;
             exp2 = '<span class="highlight">$1</span>';
+            this.text = this.text.replace(reg2, exp2);
             break;
           case 'ms.':
-            reg2 = /(ms)(.)/i;
+            reg2 = /(ms)(\.)/ig;
             exp2 = '<span class="highlight">$1</span>';
+            this.text = this.text.replace(reg2, exp2);
             break;
           case 'mx.':
-            reg2 = /(mx)(.)/i;
+            reg2 = /(mx)(\.)/ig;
             exp2 = '<span class="highlight">$1</span>';
+            this.text = this.text.replace(reg2, exp2);
             break;
           case 'dr.':
-            reg2 = /(dr)(.)/i;
+            reg2 = /(dr)(\.)/ig;
             exp2 = '<span class="highlight">$1</span>';
+            this.text = this.text.replace(reg2, exp2);
             break;
           case 'prof.':
-            reg2 = /(prof)(.)/i;
+            reg2 = /(prof)(\.)/ig;
             exp2 = '<span class="highlight">$1</span>';
+            this.text = this.text.replace(reg2, exp2);
             break;
-        }
-        while (reg2.test(this.text) === true) {
-          console.log(`BEF : ${this.text}`);
-          this.text = this.text.replace(reg2, exp2);
-          console.log(`AFT : ${this.text}`);
         }
       }
       // Step3
-      console.log(`Step3`);
+      console.log(`STEP3`);
+      console.log(`TEXT : ${this.text}`);
       for (let key in this.candidate1) {
         reg3 = new RegExp(key, 'i');
         if (reg3.test(this.text) === true) {
           tmp1.push(key.length);
           tmp2.push(key);
-          tmp3.push(candidate1[key]);
+          tmp3.push(this.candidate1[key]);
         }
       }
       // Step4
-      console.log(`Step4`);
-      maxIdx = 0;
-      idxLen = tmp1[maxIdx];
+      console.log(`STEP4`);
+      console.log(`TEXT : ${this.text}`);
+      let wrk1 = 0;
+      let wrk2 = tmp1[wrk1];
       for (let i = 0; i < tmp1.length; i++) {
-        if (idxLen <= tmp1[i]) {
-          maxIdx = i;
-          idxLen = tmp1[maxIdx];
+        if (wrk2 <= tmp1[i]) {
+          wrk1 = i;
+          wrk2 = tmp1[wrk1];
         }
       }
       // Step5
-      console.log(`Step5`);
-      reg3 = new RegExp(tmp2[maxIdx], 'i');
-      exp3 = '<span class="highlight">' + tmp3[maxIdx] + '</span>';
-      //while (reg3.test(this.text) === true) {
-        console.log(`BEF : ${this.text}`);
+      console.log(`STEP5`);
+      console.log(`TEXT : ${this.text}`);
+      if (tmp2[wrk1] !== undefined) {
+        reg3 = new RegExp(tmp2[wrk1], 'ig');
+        exp3 = '<span class="highlight">' + tmp3[wrk1] + '</span>';
         this.text = this.text.replace(reg3, exp3);
-        console.log(`AFT : ${this.text}`);
-      //}
+      }
+      // Step6
+      console.log(`Step6`);
+      console.log(`TEXT : ${this.text}`);
 
-      /*
-        // Step2
-        for (let j = 0; j < arr.length; j++) {
-          for (let key in arr[j]) {
-            reg2 = new RegExp(key, 'i');
-            if (reg2.test(this.text) === true) {
-              tmp1.push(key.length);
-              tmp2.push(key);
-              tmp3.push(arr[j][key]);
-            }
-          }
-        }
-        wrk1 = 0;
-        wrk2 = tmp1[wrk1];
-        for (let j = 1; j < tmp1.length; j++) {
-          if (wrk2 <= tmp1[j]) {
-            wrk1 = j;
-            wrk2 = tmp1[wrk1];
-          }
-        }
-        if (tmp2[wrk1] !== undefined) {
-          switch(tmp2[wrk1]) {
-            case 'mr.':
-              reg2 = /(mr)(.)/i;
-              exp2 = '<span class="highlight">$1</span>';
-              break;
-            case 'mrs.':
-              reg2 = /(mrs)(.)/i;
-              exp2 = '<span class="highlight">$1</span>';
-              break;
-            case 'ms.':
-              reg2 = /(ms)(.)/i;
-              exp2 = '<span class="highlight">$1</span>';
-              break;
-            case 'mx.':
-              reg2 = /(mx)(.)/i;
-              exp2 = '<span class="highlight">$1</span>';
-              break;
-            case 'dr.':
-              reg2 = /(dr)(.)/i;
-              exp2 = '<span class="highlight">$1</span>';
-              break;
-            case 'prof.':
-              reg2 = /(prof)(.)/i;
-              exp2 = '<span class="highlight">$1</span>';
-              break;
-            default:
-              reg2 = new RegExp(tmp2[wrk1], 'i');
-              exp2 = '<span class="highlight">' + tmp3[wrk1] + '</span>';
-              break;
-          }
-          while (reg2.test(this.text) === true) {
-            this.text = this.text.replace(reg2, exp2);
-          }
-        }
-      //}
-      */
     } else {
       /*
         // Step1
@@ -240,7 +188,7 @@ class Translator {
     }
     return this.text;
   }
-  
+
 }
 
 module.exports = Translator;
