@@ -18,6 +18,7 @@ module.exports = function (app) {
         return res.json({ error: 'Invalid value for locale field' });
       }
       let result = translator.translate(req.body.text, req.body.locale);
+      console.log(`DEBUG : ${result}`);
       return res.json({ translation: result });
     });
 };
