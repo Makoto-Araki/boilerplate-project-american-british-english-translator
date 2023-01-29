@@ -55,101 +55,138 @@ class Translator {
     let exp2 = '';
     let reg3 = '';
     let exp3 = '';
+    let flg = false;
 
     if (locale === 'american-to-british') {
       // Step1
       reg1 = /([0-9]{1,2}):([0-9]{2})/g;
       exp1 = '<span class="highlight">$1.$2</span>';
-      this.text = this.text.replace(reg1, exp1);
+      if (reg1.test(this.text) === true) {
+        flg = true;
+        this.text = this.text.replace(reg1, exp1);
+      }
       // Step2
       for (let key in americanToBritishTitles) {
         switch (key) {
           case 'mr.':
             reg2 = /(mr)(\.)/ig;
             exp2 = '<span class="highlight">$1</span>';
-            this.text = this.text.replace(reg2, exp2);
+            //if (reg2.test(this.text) === true) flg = true;
+            //if (reg2.test(this.text) === true) this.text = this.text.replace(reg2, exp2);
             break;
           case 'mrs.':
             reg2 = /(mrs)(\.)/ig;
             exp2 = '<span class="highlight">$1</span>';
-            this.text = this.text.replace(reg2, exp2);
+            //if (reg2.test(this.text) === true) flg = true;
+            //if (reg2.test(this.text) === true) this.text = this.text.replace(reg2, exp2);
             break;
           case 'ms.':
             reg2 = /(ms)(\.)/ig;
             exp2 = '<span class="highlight">$1</span>';
-            this.text = this.text.replace(reg2, exp2);
+            //if (reg2.test(this.text) === true) flg = true;
+            //if (reg2.test(this.text) === true) this.text = this.text.replace(reg2, exp2);
             break;
           case 'mx.':
             reg2 = /(mx)(\.)/ig;
             exp2 = '<span class="highlight">$1</span>';
-            this.text = this.text.replace(reg2, exp2);
+            //if (reg2.test(this.text) === true) flg = true;
+            //if (reg2.test(this.text) === true) this.text = this.text.replace(reg2, exp2);
             break;
           case 'dr.':
             reg2 = /(dr)(\.)/ig;
             exp2 = '<span class="highlight">$1</span>';
-            this.text = this.text.replace(reg2, exp2);
+            //if (reg2.test(this.text) === true) flg = true;
+            //if (reg2.test(this.text) === true) this.text = this.text.replace(reg2, exp2);
             break;
           case 'prof.':
             reg2 = /(prof)(\.)/ig;
             exp2 = '<span class="highlight">$1</span>';
-            this.text = this.text.replace(reg2, exp2);
+            //if (reg2.test(this.text) === true) flg = true;
+            //if (reg2.test(this.text) === true) this.text = this.text.replace(reg2, exp2);
             break;
+        }
+        if (reg2.test(this.text) === true) {
+          flg = true;
+          this.text = this.text.replace(reg2, exp2);
         }
       }
       // Step3
       for (let i = 0; i < this.dict1.length; i++) {
         reg3 = new RegExp(`(\\s|^)${this.dict1[i].key}([^\\w])`, 'ig');
         exp3 = `$1<span class="highlight">${this.dict1[i].val}</span>$2`;
-        this.text = this.text.replace(reg3, exp3);
+        if (reg3.test(this.text) === true) {
+          flg = true;
+          this.text = this.text.replace(reg3, exp3);
+        }
       }
     } else {
       // Step1
       reg1 = /([0-9]{1,2}).([0-9]{2})/g;
       exp1 = '<span class="highlight">$1:$2</span>';
-      this.text = this.text.replace(reg1, exp1);
+      if (reg1.test(this.text) === true) {
+        flg = true;
+        this.text = this.text.replace(reg1, exp1);
+      }
       // Step2
       for (let key in americanToBritishTitles) {
         switch (americanToBritishTitles[key]) {
           case 'mr':
             reg2 = /(\s|^)(mr)(\s|$|\.)/ig;
             exp2 = '$1<span class="highlight">$2\.</span>$3';
-            this.text = this.text.replace(reg2, exp2);
+            //if (reg2.test(this.text) === true) flg = true;
+            //if (reg2.test(this.text) === true) this.text = this.text.replace(reg2, exp2);
             break;
           case 'mrs':
             reg2 = /(\s|^)(mrs)(\s|$|\.)/ig;
             exp2 = '$1<span class="highlight">$2\.</span>$3';
-            this.text = this.text.replace(reg2, exp2);
+            //if (reg2.test(this.text) === true) flg = true;
+            //if (reg2.test(this.text) === true) this.text = this.text.replace(reg2, exp2);
             break;
           case 'ms':
             reg2 = /(\s|^)(ms)(\s|$|\.)/ig;
             exp2 = '$1<span class="highlight">$2\.</span>$3';
-            this.text = this.text.replace(reg2, exp2);
+            //if (reg2.test(this.text) === true) flg = true;
+            //if (reg2.test(this.text) === true) this.text = this.text.replace(reg2, exp2);
             break;
           case 'mx':
             reg2 = /(\s|^)(mx)(\s|$|\.)/ig;
             exp2 = '$1<span class="highlight">$2\.</span>$3';
-            this.text = this.text.replace(reg2, exp2);
+            //if (reg2.test(this.text) === true) flg = true;
+            //if (reg2.test(this.text) === true) this.text = this.text.replace(reg2, exp2);
             break;
           case 'dr':
             reg2 = /(\s|^)(dr)(\s|$|\.)/ig;
             exp2 = '$1<span class="highlight">$2\.</span>$3';
-            this.text = this.text.replace(reg2, exp2);
+            //if (reg2.test(this.text) === true) flg = true;
+            //if (reg2.test(this.text) === true) this.text = this.text.replace(reg2, exp2);
             break;
           case 'prof':
             reg2 = /(\s|^)(prof)(\s|$|\.)/ig;
             exp2 = '$1<span class="highlight">$2\.</span>$3';
-            this.text = this.text.replace(reg2, exp2);
+            //if (reg2.test(this.text) === true) flg = true;
+            //if (reg2.test(this.text) === true) this.text = this.text.replace(reg2, exp2);
             break;
+        }
+        if (reg2.test(this.text) === true) {
+          flg = true;
+          this.text = this.text.replace(reg2, exp2);
         }
       }
       // Step3
       for (let i = 0; i < this.dict2.length; i++) {
         reg3 = new RegExp(`(\\s|^)${this.dict2[i].key}([^\\w])`, 'ig');
         exp3 = `$1<span class="highlight">${this.dict2[i].val}</span>$2`;
-        this.text = this.text.replace(reg3, exp3);
+        if (reg3.test(this.text) === true) {
+          flg = true;
+          this.text = this.text.replace(reg3, exp3);
+        }
       }
     }
-    return this.text;
+    if (flg === false) {
+      return 'Everything looks good to me!';
+    } else {
+      return this.text;
+    }
   }
 
 }
