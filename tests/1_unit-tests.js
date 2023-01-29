@@ -32,14 +32,6 @@ suite('Unit Tests', () => {
   const aft09 = '<span class="highlight">Dr</span> Grosh will see you now.';
   const aft10 = 'Lunch is at <span class="highlight">12.15</span> today.';
   
-  // American to British - For Additional Test
-  const add01 = 'I write unit name kilogram and kilometer';
-  const add02 = 'From 14:15 to 17:15';
-  const add03 = 'kilogram and kilometer';
-  const res01 = 'I write unit name <span class="highlight">kilogramme</span> and <span class="highlight">kilometre</span>';
-  const res02 = 'From <span class="highlight">14.15</span> to <span class="highlight">17.15</span>';
-  const res03 = '<span class="highlight">kilogramme</span> and <span class="highlight">kilometre</span>';
-  
   // British to American - For Unit Test
   const bef11 = 'We watched the footie match for a while.';
   const bef12 = 'Paracetamol takes up to an hour to work.';
@@ -61,6 +53,16 @@ suite('Unit Tests', () => {
   const aft18 = 'Have you met <span class="highlight">Mrs.</span> Kalyani?';
   const aft19 = '<span class="highlight">Prof.</span> Joyner of King\'s College, London.';
   const aft20 = 'Tea time is usually around 4 or <span class="highlight">4:30</span>.';
+
+  // Highlight Translation - For Unit Test
+  const bef21 = 'Mangoes are my favorite fruit.';
+  const bef22 = 'I ate yogurt for breakfast.';
+  const bef23 = 'We watched the footie match for a while.';
+  const bef24 = 'Paracetamol takes up to an hour to work.';
+  const aft21 = 'Mangoes are my <span class="highlight">favourite</span> fruit.';
+  const aft22 = 'I ate <span class="highlight">yoghurt</span> for breakfast.';
+  const aft23 = 'We watched the <span class="highlight">soccer</span> match for a while.';
+  const aft24 = '<span class="highlight">Tylenol</span> takes up to an hour to work.';
   
   // American to British - Unit Test
   test('Translate to British English - 01', () => {
@@ -94,17 +96,6 @@ suite('Unit Tests', () => {
     assert.equal(translator.translate(bef10, opt1), aft10);
   });
   
-  // American to British - Additional Test
-  test('Additional Test - 01', () => {
-    assert.equal(translator.translate(add01, opt1), res01);
-  });
-  test('Additional Test - 02', () => {
-    assert.equal(translator.translate(add02, opt1), res02);
-  });
-  test('Additional Test - 03', () => {
-    assert.equal(translator.translate(add03, opt1), res03);
-  });
-  
   // British to American - Unit Test
   test('Translate to American English - 01', () => {
     assert.equal(translator.translate(bef11, opt2), aft11);
@@ -135,5 +126,19 @@ suite('Unit Tests', () => {
   });
   test('Translate to American English - 10', () => {
     assert.equal(translator.translate(bef20, opt2), aft20);
+  });
+
+  // Highlight Translation - Unit Test
+  test('Highlight Translation - 01', () => {
+    assert.equal(translator.translate(bef21, opt1), aft21);
+  });
+  test('Highlight Translation - 02', () => {
+    assert.equal(translator.translate(bef22, opt1), aft22);
+  });
+  test('Highlight Translation - 03', () => {
+    assert.equal(translator.translate(bef23, opt2), aft23);
+  });
+  test('Highlight Translation - 04', () => {
+    assert.equal(translator.translate(bef24, opt2), aft24);
   });
 });

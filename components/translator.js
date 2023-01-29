@@ -98,8 +98,8 @@ class Translator {
       }
       // Step3
       for (let i = 0; i < this.dict1.length; i++) {
-        reg3 = new RegExp('((\\s|\^))' + this.dict1[i].key + '((\\s|\.|\$))', 'ig');
-        exp3 = '$1<span class="highlight">' + this.dict1[i].val + '</span>$3';
+        reg3 = new RegExp(`(\\s|^)${this.dict1[i].key}([^\\w])`, 'ig');
+        exp3 = `$1<span class="highlight">${this.dict1[i].val}</span>$2`;
         this.text = this.text.replace(reg3, exp3);
       }
     } else {
@@ -144,8 +144,8 @@ class Translator {
       }
       // Step3
       for (let i = 0; i < this.dict2.length; i++) {
-        reg3 = new RegExp('((\\s|\^))' + this.dict2[i].key + '((\\s|\.|\$))', 'ig');
-        exp3 = '$1<span class="highlight">' + this.dict2[i].val + '</span>$3';
+        reg3 = new RegExp(`(\\s|^)${this.dict2[i].key}([^\\w])`, 'ig');
+        exp3 = `$1<span class="highlight">${this.dict2[i].val}</span>$2`;
         this.text = this.text.replace(reg3, exp3);
       }
     }

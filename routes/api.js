@@ -8,10 +8,16 @@ module.exports = function (app) {
 
   app.route('/api/translate')
     .post((req, res) => {
+      if (req.body.hasOwnProperty('text') === false || req.body.hasOwnProperty('locale') === false) {
+        return res.json({ error: 'Required field(s) missing' });
+      }
+      if (req.body.text = '') {
+        return res.json({ error: 'No text to translate' });
+      }
+      if (req.body.locale !== 'american-to-british' && req.body.locale !== 'british-to-american') {
+        return res.json({ error: 'Invalid value for locale field' });
+      }
       let result = translator.translate(req.body.text, req.body.locale);
-      res.json({ translation: result });
-      //console.log(result);
-      // { text: '', locale: 'american-to-british' }
-      // { text: '', locale: 'british-to-american' }
+      return res.json({ translation: result });
     });
 };
