@@ -111,33 +111,33 @@ class Translator {
       for (let key in americanToBritishTitles) {
         switch (americanToBritishTitles[key]) {
           case 'mr':
-            reg2 = /(mr)/ig;
-            exp2 = '<span class="highlight">$1\.</span>';
+            reg2 = /(\s|^)(mr)(\s|$|\.)/ig;
+            exp2 = '$1<span class="highlight">$2\.</span>$3';
             this.text = this.text.replace(reg2, exp2);
             break;
           case 'mrs':
-            reg2 = /(mrs)/ig;
-            exp2 = '<span class="highlight">$1\.</span>';
+            reg2 = /(\s|^)(mrs)(\s|$|\.)/ig;
+            exp2 = '$1<span class="highlight">$2\.</span>$3';
             this.text = this.text.replace(reg2, exp2);
             break;
           case 'ms':
-            reg2 = /(ms)/ig;
-            exp2 = '<span class="highlight">$1\.</span>';
+            reg2 = /(\s|^)(ms)(\s|$|\.)/ig;
+            exp2 = '$1<span class="highlight">$2\.</span>$3';
             this.text = this.text.replace(reg2, exp2);
             break;
           case 'mx':
-            reg2 = /(mx)/ig;
-            exp2 = '<span class="highlight">$1\.</span>';
+            reg2 = /(\s|^)(mx)(\s|$|\.)/ig;
+            exp2 = '$1<span class="highlight">$2\.</span>$3';
             this.text = this.text.replace(reg2, exp2);
             break;
           case 'dr':
-            reg2 = /(dr)/ig;
-            exp2 = '<span class="highlight">$1\.</span>';
+            reg2 = /(\s|^)(dr)(\s|$|\.)/ig;
+            exp2 = '$1<span class="highlight">$2\.</span>$3';
             this.text = this.text.replace(reg2, exp2);
             break;
           case 'prof':
-            reg2 = /(prof)/ig;
-            exp2 = '<span class="highlight">$1\.</span>';
+            reg2 = /(\s|^)(prof)(\s|$|\.)/ig;
+            exp2 = '$1<span class="highlight">$2\.</span>$3';
             this.text = this.text.replace(reg2, exp2);
             break;
         }
