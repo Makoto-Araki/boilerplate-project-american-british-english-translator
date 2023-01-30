@@ -117,9 +117,15 @@ class Translator {
       }
       // Step4
       if (flg === false) {
-        return { translation: 'Everything looks good to me!' };
+        return {
+          text: text,
+          translation: 'Everything looks good to me!'
+        };
       } else {
-        return { translation: this.text };
+        return {
+          text: text,
+          translation: this.text
+        };
       }
     }
     
@@ -175,9 +181,15 @@ class Translator {
       }
       // Step4
       if (flg === false) {
-        return { translation: 'Everything looks good to me!' };
+        return {
+          text: text,
+          translation: 'Everything looks good to me!'
+        };
       } else {
-        return { translation: this.text };
+        return {
+          text: text,
+          translation: this.text
+        };
       }
     }
   }

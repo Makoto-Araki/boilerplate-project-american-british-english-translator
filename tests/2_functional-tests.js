@@ -22,8 +22,6 @@ suite('Functional Tests', () => {
     });
   });
   
-  /* -------------------------------------------------- */
-
   test('Translation with text and invalid locale field', (done) => {
     chai
     .request(server)
@@ -35,8 +33,6 @@ suite('Functional Tests', () => {
     });
   });
   
-  /* -------------------------------------------------- */
-
   test('Translation with missing text field', (done) => {
     chai
     .request(server)
@@ -48,8 +44,6 @@ suite('Functional Tests', () => {
     });
   });
   
-  /* -------------------------------------------------- */
-
   test('Translation with missing locale field', (done) => {
     chai
     .request(server)
@@ -60,8 +54,6 @@ suite('Functional Tests', () => {
       done();
     });
   });
-
-  /* -------------------------------------------------- */
   
   test('Translation with empty text', (done) => {
     chai
@@ -74,8 +66,6 @@ suite('Functional Tests', () => {
     });
   });
   
-  /* -------------------------------------------------- */
-
   test('Translation with text that needs no translation', (done) => {
     chai
     .request(server)
