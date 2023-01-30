@@ -5,20 +5,15 @@ const Translator = require('../components/translator.js');
 module.exports = function (app) {
   
   const translator = new Translator();
-
+  
   app.route('/api/translate')
     .post((req, res) => {
-      if (req.body.hasOwnProperty('text') === false || req.body.hasOwnProperty('locale') === false) {
+      if (req.body.hasOwnProperty('text') === false) {
         return res.json({ error: 'Required field(s) missing' });
+      } else if (req.body.hasOwnProperty('locale') === false) {
+        return res.json({ error: 'Required field(s) missing' });
+      } else {
+        return res.json(translator.translate(req.body.text, req.body.locale));
       }
-      if (req.body.text = '') {
-        return res.json({ error: 'No text to translate' });
-      }
-      if (req.body.locale !== 'american-to-british' && req.body.locale !== 'british-to-american') {
-        return res.json({ error: 'Invalid value for locale field' });
-      }
-      let result = translator.translate(req.body.text, req.body.locale);
-      console.log(`DEBUG : ${result}`);
-      return res.json({ translation: result });
     });
 };

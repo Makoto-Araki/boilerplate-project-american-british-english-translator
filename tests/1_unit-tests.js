@@ -63,82 +63,91 @@ suite('Unit Tests', () => {
   const aft22 = 'I ate <span class="highlight">yoghurt</span> for breakfast.';
   const aft23 = 'We watched the <span class="highlight">soccer</span> match for a while.';
   const aft24 = '<span class="highlight">Tylenol</span> takes up to an hour to work.';
+
+  /* -------------------------------------------------- */
   
   // American to British - Unit Test
   test('Translate to British English - 01', () => {
-    assert.equal(translator.translate(bef01, opt1), aft01);
+    assert.deepEqual(translator.translate(bef01, opt1), { translation: aft01 });
   });
   test('Translate to British English - 02', () => {
-    assert.equal(translator.translate(bef02, opt1), aft02);
+    assert.deepEqual(translator.translate(bef02, opt1), { translation: aft02 });
   });
   test('Translate to British English - 03', () => {
-    assert.equal(translator.translate(bef03, opt1), aft03);
+    assert.deepEqual(translator.translate(bef03, opt1), { translation: aft03 });
   });
   test('Translate to British English - 04', () => {
-    assert.equal(translator.translate(bef04, opt1), aft04);
+    assert.deepEqual(translator.translate(bef04, opt1), { translation: aft04 });
   });
   test('Translate to British English - 05', () => {
-    assert.equal(translator.translate(bef05, opt1), aft05);
+    assert.deepEqual(translator.translate(bef05, opt1), { translation: aft05 });
   });
   test('Translate to British English - 06', () => {
-    assert.equal(translator.translate(bef06, opt1), aft06);
+    assert.deepEqual(translator.translate(bef06, opt1), { translation: aft06 });
   });
   test('Translate to British English - 07', () => {
-    assert.equal(translator.translate(bef07, opt1), aft07);
+    assert.deepEqual(translator.translate(bef07, opt1), { translation: aft07 });
   });
   test('Translate to British English - 08', () => {
-    assert.equal(translator.translate(bef08, opt1), aft08);
+    assert.deepEqual(translator.translate(bef08, opt1), { translation: aft08 });
   });
   test('Translate to British English - 09', () => {
-    assert.equal(translator.translate(bef09, opt1), aft09);
+    assert.deepEqual(translator.translate(bef09, opt1), { translation: aft09 });
   });
   test('Translate to British English - 10', () => {
-    assert.equal(translator.translate(bef10, opt1), aft10);
+    assert.deepEqual(translator.translate(bef10, opt1), { translation: aft10 });
   });
+  
+  /* -------------------------------------------------- */
   
   // British to American - Unit Test
   test('Translate to American English - 01', () => {
-    assert.equal(translator.translate(bef11, opt2), aft11);
+    assert.deepEqual(translator.translate(bef11, opt2), { translation: aft11 });
   });
   test('Translate to American English - 02', () => {
-    assert.equal(translator.translate(bef12, opt2), aft12);
+    assert.deepEqual(translator.translate(bef12, opt2), { translation: aft12 });
   });
   test('Translate to American English - 03', () => {
-    assert.equal(translator.translate(bef13, opt2), aft13);
+    assert.deepEqual(translator.translate(bef13, opt2), { translation: aft13 });
   });
   test('Translate to American English - 04', () => {
-    assert.equal(translator.translate(bef14, opt2), aft14);
+    assert.deepEqual(translator.translate(bef14, opt2), { translation: aft14 });
   });
   test('Translate to American English - 05', () => {
-    assert.equal(translator.translate(bef15, opt2), aft15);
+    assert.deepEqual(translator.translate(bef15, opt2), { translation: aft15 });
   });
   test('Translate to American English - 06', () => {
-    assert.equal(translator.translate(bef16, opt2), aft16);
+    assert.deepEqual(translator.translate(bef16, opt2), { translation: aft16 });
   });
   test('Translate to American English - 07', () => {
-    assert.equal(translator.translate(bef17, opt2), aft17);
+    assert.deepEqual(translator.translate(bef17, opt2), { translation: aft17 });
   });
   test('Translate to American English - 08', () => {
-    assert.equal(translator.translate(bef18, opt2), aft18);
+    assert.deepEqual(translator.translate(bef18, opt2), { translation: aft18 });
   });
   test('Translate to American English - 09', () => {
-    assert.equal(translator.translate(bef19, opt2), aft19);
+    assert.deepEqual(translator.translate(bef19, opt2), { translation: aft19 });
   });
   test('Translate to American English - 10', () => {
-    assert.equal(translator.translate(bef20, opt2), aft20);
+    assert.deepEqual(translator.translate(bef20, opt2), { translation: aft20 });
   });
-
+  
+  /* -------------------------------------------------- */
+  
   // Highlight Translation - Unit Test
   test('Highlight Translation - 01', () => {
-    assert.equal(translator.translate(bef21, opt1), aft21);
+    assert.deepEqual(translator.translate(bef21, opt1), { translation: aft21 });
   });
   test('Highlight Translation - 02', () => {
-    assert.equal(translator.translate(bef22, opt1), aft22);
+    assert.deepEqual(translator.translate(bef22, opt1), { translation: aft22 });
   });
   test('Highlight Translation - 03', () => {
-    assert.equal(translator.translate(bef23, opt2), aft23);
+    assert.deepEqual(translator.translate(bef23, opt2), { translation: aft23 });
   });
   test('Highlight Translation - 04', () => {
-    assert.equal(translator.translate(bef24, opt2), aft24);
+    assert.deepEqual(translator.translate(bef24, opt2), { translation: aft24 });
   });
+  
+  /* -------------------------------------------------- */
+  
 });

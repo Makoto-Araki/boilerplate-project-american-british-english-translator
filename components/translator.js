@@ -57,9 +57,16 @@ class Translator {
     let exp3 = '';
     let flg = false;
 
+    if (text === '') {
+      return { error: 'No text to translate' };
+    }
+
+    if (locale !== 'american-to-british' && locale !== 'british-to-american') {
+      return { error: 'Invalid value for locale field' }
+    }
+    
     if (locale === 'american-to-british') {
       // Step1
-      console.log('STEP1');
       reg1 = /([0-9]{1,2}):([0-9]{2})/g;
       exp1 = '<span class="highlight">$1.$2</span>';
       if (reg1.test(this.text) === true) {
@@ -67,7 +74,6 @@ class Translator {
         this.text = this.text.replace(reg1, exp1);
       }
       // Step2
-      console.log('STEP2');
       for (let key in americanToBritishTitles) {
         switch (key) {
           case 'mr.':
@@ -101,7 +107,6 @@ class Translator {
         }
       }
       // Step3
-      console.log('STEP3');
       for (let i = 0; i < this.dict1.length; i++) {
         reg3 = new RegExp(`(\\s|^)${this.dict1[i].key}([^\\w])`, 'ig');
         exp3 = `$1<span class="highlight">${this.dict1[i].val}</span>$2`;
@@ -110,7 +115,15 @@ class Translator {
           this.text = this.text.replace(reg3, exp3);
         }
       }
-    } else {
+      // Step4
+      if (flg === false) {
+        return { translation: 'Everything looks good to me!' };
+      } else {
+        return { translation: this.text };
+      }
+    }
+    
+    if (locale === 'british-to-american') {
       // Step1
       reg1 = /([0-9]{1,2}).([0-9]{2})/g;
       exp1 = '<span class="highlight">$1:$2</span>';
@@ -160,11 +173,12 @@ class Translator {
           this.text = this.text.replace(reg3, exp3);
         }
       }
-    }
-    if (flg === false) {
-      return 'Everything looks good to me!';
-    } else {
-      return this.text;
+      // Step4
+      if (flg === false) {
+        return { translation: 'Everything looks good to me!' };
+      } else {
+        return { translation: this.text };
+      }
     }
   }
 
